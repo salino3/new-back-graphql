@@ -18,6 +18,7 @@ const ProductType = new GraphQLObjectType({
     code: { type: GraphQLString },
     price: { type: GraphQLFloat },
     quantity: { type: GraphQLInt },
+    company: { type: GraphQLString },
   }),
 });
 
@@ -68,6 +69,7 @@ const Mutation = new GraphQLObjectType({
         code: { type: new GraphQLNonNull(GraphQLString) },
         price: { type: GraphQLFloat },
         quantity: { type: GraphQLInt },
+        company: { type: GraphQLString },
       },
       async resolve(parent, args) {
         try {
@@ -96,6 +98,7 @@ const Mutation = new GraphQLObjectType({
         code: { type: GraphQLString },
         price: { type: GraphQLFloat },
         quantity: { type: GraphQLInt },
+        company: { type: GraphQLString },
       },
       async resolve(parent, args) {
         try {
