@@ -112,9 +112,26 @@ const Mutation = new GraphQLObjectType({
       },
       async resolve(parent, args) {
         try {
+            const { data: currentUser } = await axios.get(
+              `http://localhost:3000/products/${args.id}`
+            );
+
+            if(!currentUser){
+              throw new Error("User not found");
+            };
+
+            const updatedFields = {
+              name: args.name || currentUser.name,
+              email: args.email || currentUser.email,
+              phone: args.phone || currentUser.phone,
+              gennder: args.gender || currentUser.gender,
+              age: args.age || currentUser.age
+            };
+
+          //
           const response = await axios.put(
             `http://localhost:3000/users/${args.id}`,
-            args
+            updatedFields
           );
           return response.data;
         } catch (error) {

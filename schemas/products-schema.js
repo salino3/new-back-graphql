@@ -86,7 +86,7 @@ const Mutation = new GraphQLObjectType({
           );
           return response.data;
         } catch (error) {
-          throw new Error("Error al agregar el producto");
+          throw new Error("Error creating product");
         }
       },
     },
@@ -102,16 +102,34 @@ const Mutation = new GraphQLObjectType({
       },
       async resolve(parent, args) {
         try {
+          const { data: currentProduct } = await axios.get(
+            `http://localhost:3000/products/${args.id}`
+          );
+
+          if (!currentProduct) {
+            throw new Error("Product not found");
+          };
+
+          const updatedFields = {
+            name: args.name || currentProduct.name,
+            code: args.code || currentProduct.code,
+            price: args.price || currentProduct.price,
+            quantity: args.quantity || currentProduct.quantity,
+            company: args.company || currentProduct.company,
+          };
+
           const response = await axios.put(
             `http://localhost:3000/products/${args.id}`,
-            args
+            updatedFields
           );
+
           return response.data;
         } catch (error) {
-          throw new Error("Error al actualizar el producto");
+          throw new Error("Error updating the product");
         }
       },
     },
+
     deleteProduct: {
       type: ProductType,
       args: {
@@ -124,7 +142,7 @@ const Mutation = new GraphQLObjectType({
           );
           return response.data;
         } catch (error) {
-          throw new Error("Error al eliminar el producto");
+          throw new Error("Error deliting product");
         }
       },
     },
