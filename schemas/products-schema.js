@@ -85,9 +85,12 @@ const Mutation = new GraphQLObjectType({
             "http://localhost:3000/products",
             newProduct
           );
+          if (!response && response?.data) {
+            return { message: "Error creating product" };
+          }
           return response.data;
         } catch (error) {
-          throw new Error("Error creating product");
+          return error.message;
         }
       },
     },
@@ -141,6 +144,10 @@ const Mutation = new GraphQLObjectType({
           const response = await axios.delete(
             `http://localhost:3000/products/${args.id}`
           );
+
+          if (!response && response?.data) {
+            return { message: "Product not found" };
+          }
           return response.data;
         } catch (error) {
           throw new Error("Error deliting product");
