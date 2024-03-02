@@ -7,7 +7,7 @@ const {
   GraphQLNonNull,
   GraphQLList,
 } = require("graphql");
-const axios = require("axios"); 
+const axios = require("axios");
 const { v4: uuidv4 } = require("uuid");
 
 const ProductType = new GraphQLObjectType({
@@ -36,7 +36,7 @@ const RootQuery = new GraphQLObjectType({
         }
       },
     },
-    product: {
+    getProduct: {
       type: ProductType,
       args: {
         id: { type: GraphQLString },
@@ -79,6 +79,7 @@ const Mutation = new GraphQLObjectType({
             code: args.code,
             price: args.price,
             quantity: args.quantity,
+            company: args.company,
           };
           const response = await axios.post(
             "http://localhost:3000/products",
@@ -108,7 +109,7 @@ const Mutation = new GraphQLObjectType({
 
           if (!currentProduct) {
             throw new Error("Product not found");
-          };
+          }
 
           const updatedFields = {
             name: args.name || currentProduct.name,

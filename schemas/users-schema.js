@@ -82,6 +82,11 @@ const Mutation = new GraphQLObjectType({
       },
       async resolve(parent, args) {
         try {
+         const existingUser = await axios.get(`http://localhost:3000/users?email=${args.email}`);
+          if (existingUser.data.length > 0) {
+            throw new Error("Ya existe un usuario con este correo electrónico");
+          };
+
           const newUser = {
             id: uuidv4(),
             name: args.name,

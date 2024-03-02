@@ -15,6 +15,30 @@
       "price": 20,
       "quantity": 50,
       "company": "Jannone"
+    },
+    {
+      "id": "95417217-8a60-4d75-bff7-73480e0a2161",
+      "name": "Tercer producto",
+      "code": "AZZZ23",
+      "price": 20,
+      "quantity": 50,
+      "company": "Zanulo"
+    },
+    {
+      "id": "f6d91cf5-cfc7-4414-b86b-2e3c5e14139d",
+      "name": "Tercer producto",
+      "code": "AZZZ23",
+      "price": 20,
+      "quantity": 50,
+      "company": "Zanulo"
+    },
+    {
+      "id": "65c793f9-91e5-4fb9-adfd-2f2c036b8d44",
+      "name": "Tercer producto",
+      "code": "AZZZ23",
+      "price": 20,
+      "quantity": 50,
+      "company": "Zanulo"
     }
   ],
   "users": [
@@ -25,6 +49,14 @@
       "phone": 98729394951,
       "gender": "male",
       "age": 20
+    },
+    {
+      "id": "30c5f37f-xx5d-4e75-bd99-305a881bX8ee",
+      "name": "Mario",
+      "email": "mario@mail.com",
+      "phone": 94529394951,
+      "gender": "prefer_not_say",
+      "age": 25
     }
   ]
 }
