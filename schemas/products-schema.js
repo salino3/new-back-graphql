@@ -85,7 +85,7 @@ const Mutation = new GraphQLObjectType({
             "http://localhost:3000/products",
             newProduct
           );
-          if (!response && response?.data) {
+          if (!response || !response?.data) {
             return { message: "Error creating product" };
           }
           return response.data;
